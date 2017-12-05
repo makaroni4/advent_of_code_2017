@@ -1,5 +1,4 @@
-let fs = require('fs'),
-    expect = require('chai').expect;
+let expect = require('chai').expect;
 
 let solve = (input) => {
   if(input === 1) {
@@ -20,7 +19,7 @@ let solve = (input) => {
 
   while(input > prevCircleMaxNumber + sideSize) {
     prevCircleMaxNumber += sideSize;
-    middleCircleNum += sideSize
+    middleCircleNum += sideSize;
   }
 
   let verticalSteps = spiralCircleIndex - 1,
