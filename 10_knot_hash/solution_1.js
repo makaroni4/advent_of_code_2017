@@ -3,8 +3,7 @@ let fs = require('fs'),
 
 let solve = (listSize, input) => {
   let currentPosition = 0,
-      skipSize = 0,
-      lengths = input;
+      skipSize = 0;
 
   let list = [];
 
