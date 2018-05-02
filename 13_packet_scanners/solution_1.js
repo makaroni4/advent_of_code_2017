@@ -9,11 +9,11 @@ let solve = (input) => {
   let maxLayer = Math.max(...input.keys()),
       severity = 0;
 
-  for(let i = 2; i <= maxLayer; i++) {
+  for(let i = 0; i <= maxLayer; i++) {
     let layerRange = input.get(i);
 
     if(typeof(layerRange) === "number") {
-      if(i % (layerRange - 1) === 0) {
+      if(i % (2 * (layerRange - 1)) === 0) {
         severity += layerRange * i;
       }
     }
