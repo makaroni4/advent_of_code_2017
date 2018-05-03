@@ -148,19 +148,9 @@ let calculateRegions = (input) => {
   for(let x = 0; x < GRID_SIZE; x++) {
     for(let y = 0; y < GRID_SIZE; y++) {
       if(grid[y][x] === "#") {
-        if(x > 0 && grid[y][x - 1].match(/\d+/)) {
-          grid[y][x] = grid[y][x - 1];
-        } else if(y > 0 && grid[y - 1][x].match(/\d+/)) {
-          grid[y][x] = grid[y - 1][x];
-        } else if(x < (GRID_SIZE - 1) && grid[y][x + 1].match(/\d+/)) {
-          grid[y][x] = grid[y][x + 1];
-        } else if(y < (GRID_SIZE - 1) && grid[y + 1][x].match(/\d+/)) {
-          grid[y][x] = grid[y + 1][x];
-        } else {
-          regionsCount++;
+        regionsCount++;
 
-          grid[y][x] = regionsCount.toString();
-        }
+        grid[y][x] = regionsCount.toString();
 
         fillAdjacentSquares(grid, x, y);
       }
