@@ -1,7 +1,7 @@
 let fs = require('fs'),
     expect = require('chai').expect;
 
-let solve = (stepsPerInsert, totalSteps) => {
+let calculateState = (stepsPerInsert, totalSteps) => {
   let state = [0],
       currentPosition = 0;
 
@@ -17,9 +17,41 @@ let solve = (stepsPerInsert, totalSteps) => {
     currentPosition += 1;
   }
 
-  return state[currentPosition + 1];
+  return [state, currentPosition]
 };
 
-expect(solve(3, 3)).to.eql(1);
+let solve1 = (stepsPerInsert, totalSteps) => {
+  let [state, currentPosition] = calculateState(stepsPerInsert, totalSteps);
 
-console.log(solve(344, 2017));
+  return state[currentPosition + 1];
+}
+
+expect(solve1(3, 3)).to.eql(1);
+
+console.log(solve1(344, 2017));
+
+let solve2 = (stepsPerInsert, totalSteps) => {
+  let stateLength = 1;
+  let currentPosition = 0;
+  let valueAfterZero;
+
+  for(let i = 0; i < totalSteps; i++) {
+    let relativeSteps = stepsPerInsert % stateLength;
+
+    currentPosition = (currentPosition + relativeSteps) < stateLength ?
+      currentPosition + relativeSteps :
+      relativeSteps - (stateLength - currentPosition);
+
+    currentPosition += 1;
+
+    if(currentPosition === 1) {
+      valueAfterZero = i + 1;
+    }
+
+    stateLength += 1;
+  }
+
+  return valueAfterZero;
+};
+
+console.log(solve2(344, 50000000));

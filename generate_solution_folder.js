@@ -31,18 +31,10 @@ fs.writeFile(`${folder}/input.dat`, "PUT INPUT DATA HERE", (err) => {
   console.log(`${folder}/input.dat was created.`);
 });
 
-fs.writeFile(`${folder}/solution_1.js`, solutionTemplate, (err) => {
+fs.writeFile(`${folder}/solution.js`, solutionTemplate, (err) => {
   if (err) {
     return console.log(err);
   }
 
-  console.log(`${folder}/solution_1.js was created.`);
-});
-
-fs.writeFile(`${folder}/solution_2.js`, solutionTemplate, (err) => {
-  if (err) {
-    return console.log(err);
-  }
-
-  console.log(`${folder}/solution_2.js was created.`);
+  console.log(`${folder}/solution.js was created.`);
 });
