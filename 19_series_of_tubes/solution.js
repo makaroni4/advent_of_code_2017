@@ -54,11 +54,15 @@ let solve = (diagram) => {
   let y = 0;
   let direction = 0;
   let pathLetters = [];
+  let totalSteps = 0;
 
   while(isValidIndex(diagram, x, y) && direction > -1) {
     while(diagram[y][x] !== "+") {
       if(diagram[y][x] === " ") {
-        return pathLetters.join("");
+        return {
+          pathLetters: pathLetters.join(""),
+          totalSteps: totalSteps
+        };
       }
 
       if(diagram[y][x].match(/[A-Z]/)) {
@@ -66,20 +70,27 @@ let solve = (diagram) => {
       }
 
       [x, y] = vecSum([x, y], DIRECTIONS[direction]);
+
+      totalSteps++;
     }
 
     direction = nextDirection(diagram, x, y, direction);
 
     [x, y] = vecSum([x, y], DIRECTIONS[direction]);
+    totalSteps++;
   }
 
-  return pathLetters.join("");
+  return {
+    pathLetters: pathLetters.join(""),
+    totalSteps: totalSteps
+  };
 };
 
 let testDiagram = readDiagram("input_test.dat");
 
-expect(solve(testDiagram)).to.equal("ABCDEF");
+expect(solve(testDiagram).pathLetters).to.equal("ABCDEF");
 
 let diagram = readDiagram("input.dat");
 
-console.log(solve(diagram));
+console.log(solve(diagram).pathLetters);
+console.log(solve(diagram).totalSteps);
