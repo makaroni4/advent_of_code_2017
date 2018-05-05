@@ -50,10 +50,14 @@ let solve = (commands) => {
   }
 };
 
-let testCommands = fs.readFileSync("test_input.dat").toString().trim().split("\n").map(r => r.split(" "));
+let readInput = (fileName) => {
+  return fs.readFileSync(fileName).toString().trim().split("\n").map(r => r.split(" "));
+}
+
+let testCommands = readInput("test_input_1.dat");
 
 expect(solve(testCommands)).to.equal(4);
 
-let commands = fs.readFileSync("input.dat").toString().trim().split("\n").map(r => r.split(" "));
+let commands = readInput("input.dat");
 
 console.log(solve(commands));
